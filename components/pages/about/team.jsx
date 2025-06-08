@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Card, CardContent } from "@/components/ui/card"
 
 export default function Team() {
   const teamMembers = [
@@ -62,7 +62,7 @@ export default function Team() {
       initials: "LM",
       bio: "Lisa helps our clients tell their stories effectively through strategic content that engages audiences and drives results.",
     },
-  ];
+  ]
 
   return (
     <section className="py-20 md:py-32 bg-muted/30">
@@ -78,8 +78,7 @@ export default function Team() {
             Meet Our <span className="text-gradient">Team</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-[800px] mx-auto">
-            Our talented team of experts is passionate about creating innovative
-            solutions that drive results.
+            Our talented team of experts is passionate about creating innovative solutions that drive results.
           </p>
         </motion.div>
 
@@ -133,5 +132,5 @@ export default function Team() {
         </div>
       </div>
     </section>
-  );
+  )
 }

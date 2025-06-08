@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { motion } from "framer-motion"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Globe, Smartphone, Palette, Database, Code, LineChart } from "lucide-react"
 
-export default function PortfolioCategories() {
+function PortfolioCategoriesContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const categoryParam = searchParams.get("category")
@@ -63,5 +63,25 @@ export default function PortfolioCategories() {
         </motion.div>
       </div>
     </section>
+  )
+}
+
+export default function PortfolioCategories() {
+  return (
+    <Suspense
+      fallback={
+        <section className="py-12 md:py-16">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-wrap justify-center gap-4">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="h-10 w-32 bg-muted animate-pulse rounded-md" />
+              ))}
+            </div>
+          </div>
+        </section>
+      }
+    >
+      <PortfolioCategoriesContent />
+    </Suspense>
   )
 }

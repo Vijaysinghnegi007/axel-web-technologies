@@ -1,26 +1,28 @@
-import React, { useEffect } from "react";
-import AdminSidebar from "@/components/admin/admin-sidebar";
-import AdminHeader from "@/components/admin/admin-header";
-import AdminAuthCheck from "@/components/admin/admin-auth-check";
+"use client"
+
+import { useEffect } from "react"
+import AdminSidebar from "@/components/admin/admin-sidebar"
+import AdminHeader from "@/components/admin/admin-header"
+import AdminAuthCheck from "@/components/admin/admin-auth-check"
 
 const metadata = {
   title: "Admin Dashboard | Axel Web Technologies",
   description: "Admin dashboard for Axel Web Technologies website",
-};
+}
 
 export default function AdminLayout({ children }) {
   useEffect(() => {
-    document.title = metadata.title;
-    const metaDesc = document.querySelector('meta[name="description"]');
+    document.title = metadata.title
+    const metaDesc = document.querySelector('meta[name="description"]')
     if (metaDesc) {
-      metaDesc.setAttribute("content", metadata.description);
+      metaDesc.setAttribute("content", metadata.description)
     } else {
-      const meta = document.createElement("meta");
-      meta.name = "description";
-      meta.content = metadata.description;
-      document.head.appendChild(meta);
+      const meta = document.createElement("meta")
+      meta.name = "description"
+      meta.content = metadata.description
+      document.head.appendChild(meta)
     }
-  }, []);
+  }, [])
 
   return (
     <AdminAuthCheck>
@@ -32,5 +34,5 @@ export default function AdminLayout({ children }) {
         </div>
       </div>
     </AdminAuthCheck>
-  );
+  )
 }

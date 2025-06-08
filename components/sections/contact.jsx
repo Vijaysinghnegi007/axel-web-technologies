@@ -6,7 +6,14 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
@@ -32,7 +39,6 @@ const formSchema = z.object({
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showQuickContact, setShowQuickContact] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false)
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -47,17 +53,13 @@ export default function Contact() {
 
   function onSubmit(values) {
     setIsSubmitting(true)
-
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false)
-      setShowSuccess(true)
-      form.reset()
-
       toast({
         title: "Message sent successfully!",
         description: "We'll get back to you as soon as possible.",
       })
+      form.reset()
     }, 1500)
   }
 
@@ -166,85 +168,49 @@ export default function Contact() {
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your name" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your email" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Phone</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your phone number" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="subject"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Subject</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Message subject" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
+                      <FormField control={form.control} name="name" render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Message</FormLabel>
-                          <FormControl>
-                            <Textarea placeholder="Your message" className="min-h-[120px]" {...field} />
-                          </FormControl>
+                          <FormLabel>Name</FormLabel>
+                          <FormControl><Input placeholder="Your name" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
-                      )}
-                    />
+                      )} />
+                      <FormField control={form.control} name="email" render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl><Input placeholder="Your email" {...field} /></FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <FormField control={form.control} name="phone" render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Phone</FormLabel>
+                          <FormControl><Input placeholder="Your phone number" {...field} /></FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                      <FormField control={form.control} name="subject" render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Subject</FormLabel>
+                          <FormControl><Input placeholder="Message subject" {...field} /></FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+                    <FormField control={form.control} name="message" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Message</FormLabel>
+                        <FormControl><Textarea placeholder="Your message" className="min-h-[120px]" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
                     <Button type="submit" className="w-full" disabled={isSubmitting}>
                       {isSubmitting ? (
-                        <>
-                          <span className="mr-2">Sending...</span>
-                          <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                        </>
+                        <><span className="mr-2">Sending...</span><div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" /></>
                       ) : (
-                        <>
-                          Send Message
-                          <Send className="ml-2 h-4 w-4" />
-                        </>
+                        <>Send Message<Send className="ml-2 h-4 w-4" /></>
                       )}
                     </Button>
                   </form>
@@ -267,14 +233,11 @@ export default function Contact() {
         </motion.div>
       </div>
 
-      {/* Quick Contact Modal */}
       <Dialog open={showQuickContact} onOpenChange={setShowQuickContact}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Quick Contact</DialogTitle>
-            <DialogDescription>
-              Fill out this form for a quick response from our team.
-            </DialogDescription>
+            <DialogDescription>Fill out this form for a quick response from our team.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
@@ -285,44 +248,11 @@ export default function Contact() {
               <FormLabel className="text-right">Email</FormLabel>
               <Input id="quick-email" className="col-span-3" />
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <FormLabel className="text-right">Message</FormLabel>
-              <Textarea id="quick-message" className="col-span-3" />
-            </div>
           </div>
           <DialogFooter>
-            <Button
-              type="submit"
-              onClick={() => {
-                setShowQuickContact(false)
-                toast({
-                  title: "Message sent!",
-                  description: "We'll get back to you shortly.",
-                })
-              }}
-            >
-              Send
+            <Button type="submit" onClick={() => setShowQuickContact(false)}>
+              <Check className="mr-2 h-4 w-4" /> Submit
             </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
-      {/* Success Modal */}
-      <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Message Sent Successfully!</DialogTitle>
-            <DialogDescription>
-              Thank you for reaching out to us. We'll get back to you as soon as possible.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex justify-center py-6">
-            <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-              <Check className="h-8 w-8" />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button onClick={() => setShowSuccess(false)}>Close</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

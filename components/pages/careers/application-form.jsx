@@ -1,18 +1,31 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import { motion } from "framer-motion"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent } from "@/components/ui/card"
-import { Upload, Send } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Card, CardContent } from "@/components/ui/card";
+import { Upload, Send } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -21,11 +34,11 @@ const formSchema = z.object({
   position: z.string().min(1, { message: "Please select a position." }),
   experience: z.string().min(1, { message: "Please select your experience level." }),
   message: z.string().min(10, { message: "Cover letter must be at least 10 characters." }),
-})
+});
 
 export default function ApplicationForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [resumeFile, setResumeFile] = useState(null)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [resumeFile, setResumeFile] = useState(null);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -37,38 +50,38 @@ export default function ApplicationForm() {
       experience: "",
       message: "",
     },
-  })
+  });
 
-  function onSubmit(values) {
+  const onSubmit = (values) => {
     if (!resumeFile) {
       toast({
         title: "Resume required",
         description: "Please upload your resume before submitting.",
         variant: "destructive",
-      })
-      return
+      });
+      return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     // Simulate form submission
     setTimeout(() => {
-      setIsSubmitting(false)
-      form.reset()
-      setResumeFile(null)
+      setIsSubmitting(false);
+      form.reset();
+      setResumeFile(null);
 
       toast({
         title: "Application submitted successfully!",
         description: "We'll review your application and get back to you soon.",
-      })
-    }, 1500)
-  }
+      });
+    }, 1500);
+  };
 
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      setResumeFile(e.target.files[0])
+      setResumeFile(e.target.files[0]);
     }
-  }
+  };
 
   return (
     <section id="application-form" className="py-20 md:py-32 bg-muted/30">
@@ -251,5 +264,5 @@ export default function ApplicationForm() {
         </div>
       </div>
     </section>
-  )
+  );
 }

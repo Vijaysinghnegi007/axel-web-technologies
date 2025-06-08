@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Mail, MapPin, Phone } from "lucide-react"
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function ContactInfo() {
   const contactInfo = [
@@ -24,7 +24,7 @@ export default function ContactInfo() {
       details: "123 Tech Street, Silicon Valley, CA",
       description: "Book an appointment first",
     },
-  ]
+  ];
 
   return (
     <section className="py-12 md:py-20">
@@ -53,5 +53,5 @@ export default function ContactInfo() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -2,26 +2,17 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Github,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react"
+import { Facebook, Twitter, Instagram, Linkedin, Github, Mail, Phone, MapPin } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: <Facebook className="h-5 w-5" />, href: "#", label: "Facebook" },
-    { icon: <Twitter className="h-5 w-5" />, href: "#", label: "Twitter" },
-    { icon: <Instagram className="h-5 w-5" />, href: "#", label: "Instagram" },
-    { icon: <Linkedin className="h-5 w-5" />, href: "#", label: "LinkedIn" },
-    { icon: <Github className="h-5 w-5" />, href: "#", label: "GitHub" },
+    { icon: <Facebook className="h-5 w-5" />, href: "https://facebook.com", label: "Facebook" },
+    { icon: <Twitter className="h-5 w-5" />, href: "https://twitter.com", label: "Twitter" },
+    { icon: <Instagram className="h-5 w-5" />, href: "https://instagram.com", label: "Instagram" },
+    { icon: <Linkedin className="h-5 w-5" />, href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: <Github className="h-5 w-5" />, href: "https://github.com", label: "GitHub" },
   ]
 
   const footerLinks = [
@@ -29,7 +20,7 @@ export default function Footer() {
       title: "Company",
       links: [
         { name: "About Us", href: "/about" },
-        { name: "Our Team", href: "/about" },
+        { name: "Our Team", href: "/about#team" },
         { name: "Careers", href: "/careers" },
         { name: "Privacy Policy", href: "/privacy-policy" },
         { name: "Terms of Service", href: "/terms-of-service" },
@@ -38,11 +29,11 @@ export default function Footer() {
     {
       title: "Services",
       links: [
-        { name: "Web Development", href: "/services" },
-        { name: "Mobile Apps", href: "/services" },
-        { name: "UI/UX Design", href: "/services" },
-        { name: "Cloud Solutions", href: "/services" },
-        { name: "Digital Marketing", href: "/services" },
+        { name: "Web Development", href: "/services#web-development" },
+        { name: "Mobile Apps", href: "/services#mobile-apps" },
+        { name: "UI/UX Design", href: "/services#ui-ux-design" },
+        { name: "Cloud Solutions", href: "/services#cloud-solutions" },
+        { name: "Digital Marketing", href: "/services#digital-marketing" },
       ],
     },
     {
@@ -50,6 +41,7 @@ export default function Footer() {
       links: [
         { name: "Blog", href: "/blog" },
         { name: "Case Studies", href: "/case-studies" },
+        { name: "Portfolio", href: "/portfolio" },
         { name: "FAQs", href: "/faqs" },
         { name: "Support", href: "/contact" },
       ],
@@ -57,9 +49,9 @@ export default function Footer() {
   ]
 
   const contactInfo = [
-    { icon: <Mail className="h-5 w-5" />, text: "info@axelwebtech.com" },
-    { icon: <Phone className="h-5 w-5" />, text: "+1 (555) 123-4567" },
-    { icon: <MapPin className="h-5 w-5" />, text: "123 Tech Street, Silicon Valley, CA" },
+    { icon: <Mail className="h-5 w-5" />, text: "info@axelwebtech.com", href: "mailto:info@axelwebtech.com" },
+    { icon: <Phone className="h-5 w-5" />, text: "+1 (555) 123-4567", href: "tel:+15551234567" },
+    { icon: <MapPin className="h-5 w-5" />, text: "123 Tech Street, Silicon Valley, CA", href: "#" },
   ]
 
   return (
@@ -75,7 +67,9 @@ export default function Footer() {
               viewport={{ once: true }}
             >
               <Link href="/" className="inline-block mb-4">
-                <span className="text-2xl font-bold text-gradient">Axel Web</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+                  Axel Web
+                </span>
               </Link>
               <p className="text-muted-foreground mb-6 max-w-md">
                 Innovative IT solutions for modern businesses. We provide cutting-edge web development, app development,
@@ -86,6 +80,8 @@ export default function Footer() {
                   <motion.a
                     key={index}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={social.label}
                     className="h-10 w-10 flex items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
                     whileHover={{ scale: 1.1 }}
@@ -111,10 +107,7 @@ export default function Footer() {
                 <ul className="space-y-2">
                   {column.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
-                      <Link
-                        href={link.href}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
+                      <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors">
                         {link.name}
                       </Link>
                     </li>
@@ -138,7 +131,13 @@ export default function Footer() {
               {contactInfo.map((item, index) => (
                 <div key={index} className="flex items-center gap-2 text-muted-foreground">
                   {item.icon}
-                  <span>{item.text}</span>
+                  {item.href !== "#" ? (
+                    <a href={item.href} className="hover:text-primary transition-colors">
+                      {item.text}
+                    </a>
+                  ) : (
+                    <span>{item.text}</span>
+                  )}
                 </div>
               ))}
             </div>

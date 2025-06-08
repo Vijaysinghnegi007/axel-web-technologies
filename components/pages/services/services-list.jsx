@@ -2,22 +2,10 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   ArrowRight,
   Code,
@@ -128,10 +116,7 @@ export default function ServicesList() {
     },
   ]
 
-  const filteredServices =
-    activeTab === "all"
-      ? services
-      : services.filter((service) => service.category === activeTab)
+  const filteredServices = activeTab === "all" ? services : services.filter((service) => service.category === activeTab)
 
   const categories = [
     { value: "all", label: "All Services" },
@@ -196,9 +181,7 @@ export default function ServicesList() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <p className="text-muted-foreground mb-6">
-            Need a custom solution for your business? We can help!
-          </p>
+          <p className="text-muted-foreground mb-6">Need a custom solution for your business? We can help!</p>
           <Button asChild size="lg">
             <Link href="/contact">
               Get in Touch
@@ -213,24 +196,27 @@ export default function ServicesList() {
 
 function ServiceCard({ service }) {
   return (
-    <Card className="h-full overflow-hidden group transition-transform duration-300 hover:scale-[1.02]">
+    <Card className="h-full overflow-hidden group">
       <CardHeader className="pb-2">
         <div className="mb-4 text-primary">{service.icon}</div>
-        <CardTitle className="text-xl font-semibold">{service.title}</CardTitle>
-        <CardDescription className="text-muted-foreground">{service.description}</CardDescription>
+        <CardTitle className="text-xl">{service.title}</CardTitle>
+        <CardDescription>{service.description}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="flex flex-wrap gap-2 mb-4">
           {service.features.map((feature, index) => (
-            <Badge key={index} variant="outline" className="text-xs">
+            <Badge key={index} variant="outline" className="bg-primary/5">
               {feature}
             </Badge>
           ))}
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="link" size="sm" className="text-primary hover:underline mt-auto">
-          Learn More <ArrowRight className="ml-1 h-4 w-4" />
+        <Button variant="ghost" className="p-0 h-auto group-hover:text-primary transition-colors" asChild>
+          <Link href="/contact">
+            Learn more
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </Button>
       </CardFooter>
     </Card>

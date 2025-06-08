@@ -176,7 +176,7 @@ export default function Portfolio() {
                           View Details
                         </Button>
                         <Button variant="outline" asChild>
-                          <Link href={projects[currentIndex].link} target="_blank">
+                          <Link href={projects[currentIndex].link} target="_blank" rel="noopener noreferrer">
                             Live Demo
                             <ExternalLink className="ml-2 h-4 w-4" />
                           </Link>
@@ -219,113 +219,76 @@ export default function Portfolio() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects
-              .filter((_, index) => index !== currentIndex)
-              .slice(0, 3)
-              .map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="overflow-hidden h-full group">
-                    <CardContent className="p-0">
-                      <div className="relative overflow-hidden">
-                        <div className="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
-                          <Button variant="secondary" onClick={() => handleOpenProjectDetails(project)}>
-                            View Details
-                          </Button>
-                        </div>
-                        <Image
-                          src={project.image || "/placeholder.svg"}
-                          alt={project.title}
-                          width={400}
-                          height={225}
-                          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                      </div>
-                      <div className="p-6">
-                        <Badge className="mb-2">{project.category}</Badge>
-                        <h4 className="font-bold text-lg mb-2">{project.title}</h4>
-                        <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {project.technologies.slice(0, 2).map((tech, index) => (
-                            <Badge key={index} variant="outline" className="bg-primary/5">
-                              {tech}
-                            </Badge>
-                          ))}
-                          {project.technologies.length > 2 && (
-                            <Badge variant="outline" className="bg-primary/5">
-                              +{project.technologies.length - 2}
-                            </Badge>
-                          )}
-                        </div>
-                        <Button
-                          variant="ghost"
-                          className="p-0 h-auto text-primary"
-                          onClick={() => handleOpenProjectDetails(project)}
-                        >
-                          View Details
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-          </div>
-        </div>
-
-        <Dialog open={!!selectedProject} onOpenChange={() => closeProjectDetails()}>
-          {selectedProject && (
-            <DialogContent className="max-w-4xl">
-              <DialogHeader>
-                <DialogTitle className="text-2xl">{selectedProject.title}</DialogTitle>
-                <DialogDescription>
-                  <Badge className="mt-2">{selectedProject.category}</Badge>
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-6">
-                <Image
-                  src={selectedProject.image || "/placeholder.svg"}
-                  alt={selectedProject.title}
-                  width={800}
-                  height={450}
-                  className="w-full h-auto object-cover rounded-lg"
-                />
-                <div className="space-y-4">
-                  <h4 className="font-semibold text-lg">About the Project</h4>
-                  <p className="text-muted-foreground">{selectedProject.longDescription}</p>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2">Technologies Used</h4>
+              .filter((_, idx) => idx !== currentIndex)
+              .map((project) => (
+                <Card key={project.id} className="cursor-pointer" onClick={() => handleOpenProjectDetails(project)}>
+                  <CardContent className="p-4">
+                    <div className="relative rounded-md overflow-hidden mb-4">
+                      <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.title}
+                        width={400}
+                        height={200}
+                        className="w-full h-auto object-cover rounded-md"
+                      />
+                    </div>
+                    <h4 className="text-lg font-semibold mb-2">{project.title}</h4>
+                    <p className="text-muted-foreground mb-2">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
-                      {selectedProject.technologies.map((tech, index) => (
-                        <Badge key={index} variant="outline" className="bg-primary/5">
+                      {project.technologies.map((tech, idx) => (
+                        <Badge key={idx} variant="outline" className="bg-primary/5">
                           {tech}
                         </Badge>
                       ))}
                     </div>
-                  </div>
-                  <div className="flex gap-4 pt-4">
-                    <Button asChild>
-                      <Link href={selectedProject.link} target="_blank">
-                        Live Demo
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <Button variant="outline" asChild>
-                      <Link href={selectedProject.github} target="_blank">
-                        GitHub Repo
-                        <Github className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </DialogContent>
-          )}
-        </Dialog>
+                  </CardContent>
+                </Card>
+              ))}
+          </div>
+        </div>
       </div>
+
+      <Dialog open={!!selectedProject} onOpenChange={closeProjectDetails}>
+        <DialogContent className="max-w-2xl">
+          {selectedProject && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedProject.title}</DialogTitle>
+                <DialogDescription>{selectedProject.category}</DialogDescription>
+              </DialogHeader>
+              <Image
+                src={selectedProject.image || "/placeholder.svg"}
+                alt={selectedProject.title}
+                width={600}
+                height={300}
+                className="w-full h-auto rounded-lg my-4 object-cover"
+              />
+              <p className="text-muted-foreground mb-4">{selectedProject.longDescription}</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {selectedProject.technologies.map((tech, index) => (
+                  <Badge key={index} variant="outline" className="bg-primary/5">
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+              <div className="flex gap-4">
+                <Button variant="default" asChild>
+                  <Link href={selectedProject.link} target="_blank" rel="noopener noreferrer">
+                    Live Demo
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button variant="outline" asChild>
+                  <Link href={selectedProject.github} target="_blank" rel="noopener noreferrer">
+                    GitHub
+                    <Github className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }

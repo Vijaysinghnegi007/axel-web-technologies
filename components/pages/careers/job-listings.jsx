@@ -111,7 +111,10 @@ export default function JobListings() {
     },
   ]
 
-  const filteredJobs = activeTab === "all" ? jobs : jobs.filter((job) => job.department.toLowerCase() === activeTab)
+  const filteredJobs =
+    activeTab === "all"
+      ? jobs
+      : jobs.filter((job) => job.department.toLowerCase() === activeTab)
 
   const departments = [
     { value: "all", label: "All Departments" },

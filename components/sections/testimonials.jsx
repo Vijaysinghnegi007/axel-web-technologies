@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { motion } from "framer-motion"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 export default function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [autoplay, setAutoplay] = useState(true)
-  const autoplayRef = useRef(null)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
+  const autoplayRef = useRef(null);
 
   const testimonials = [
     {
@@ -53,39 +53,37 @@ export default function Testimonials() {
         "The team at Axel Web provided exceptional service from concept to deployment. Their technical expertise and proactive communication made the development process smooth and efficient.",
       rating: 5,
     },
-  ]
+  ];
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
-  }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
-  }
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
+  };
 
   const goToSlide = (index) => {
-    setCurrentIndex(index)
-    setAutoplay(false)
+    setCurrentIndex(index);
+    setAutoplay(false);
     if (autoplayRef.current) {
-      clearInterval(autoplayRef.current)
+      clearInterval(autoplayRef.current);
     }
-    // Resume autoplay after 5 seconds of inactivity
-    setTimeout(() => setAutoplay(true), 5000)
-  }
+    setTimeout(() => setAutoplay(true), 5000);
+  };
 
   useEffect(() => {
     if (autoplay) {
       autoplayRef.current = setInterval(() => {
-        nextSlide()
-      }, 5000)
+        nextSlide();
+      }, 5000);
     }
-
     return () => {
       if (autoplayRef.current) {
-        clearInterval(autoplayRef.current)
+        clearInterval(autoplayRef.current);
       }
-    }
-  }, [autoplay, currentIndex])
+    };
+  }, [autoplay, currentIndex]);
 
   return (
     <section id="testimonials" className="py-20 md:py-32">
@@ -122,7 +120,9 @@ export default function Testimonials() {
                   <div className="text-primary mb-6">
                     <Quote className="h-12 w-12 mx-auto opacity-20" />
                   </div>
-                  <p className="text-lg md:text-xl text-center italic mb-6">"{testimonials[currentIndex].content}"</p>
+                  <p className="text-lg md:text-xl text-center italic mb-6">
+                    "{testimonials[currentIndex].content}"
+                  </p>
                   <div className="flex justify-center mb-4">
                     {[...Array(5)].map((_, i) => (
                       <svg
@@ -141,7 +141,10 @@ export default function Testimonials() {
                 </CardContent>
                 <CardFooter className="flex flex-col items-center pb-10">
                   <Avatar className="h-16 w-16 border-4 border-primary/10 mb-4">
-                    <AvatarImage src={testimonials[currentIndex].image} alt={testimonials[currentIndex].name} />
+                    <AvatarImage
+                      src={testimonials[currentIndex].image}
+                      alt={testimonials[currentIndex].name}
+                    />
                     <AvatarFallback>{testimonials[currentIndex].initials}</AvatarFallback>
                   </Avatar>
                   <div className="text-center">
@@ -203,5 +206,5 @@ export default function Testimonials() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

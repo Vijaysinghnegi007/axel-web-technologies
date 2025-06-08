@@ -1,13 +1,20 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Globe, Smartphone, Palette, Database, Code, LineChart } from "lucide-react"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import {
+  Globe,
+  Smartphone,
+  Palette,
+  Database,
+  Code,
+  LineChart,
+} from "lucide-react";
 
 export default function CaseStudiesFilter() {
-  const [activeCategory, setActiveCategory] = useState("all")
-  const [activeIndustry, setActiveIndustry] = useState("all")
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeIndustry, setActiveIndustry] = useState("all");
 
   const categories = [
     { id: "all", name: "All Categories", icon: <Globe className="h-5 w-5" /> },
@@ -16,7 +23,7 @@ export default function CaseStudiesFilter() {
     { id: "design", name: "UI/UX Design", icon: <Palette className="h-5 w-5" /> },
     { id: "cloud", name: "Cloud Solutions", icon: <Database className="h-5 w-5" /> },
     { id: "marketing", name: "Digital Marketing", icon: <LineChart className="h-5 w-5" /> },
-  ]
+  ];
 
   const industries = [
     { id: "all", name: "All Industries" },
@@ -25,7 +32,7 @@ export default function CaseStudiesFilter() {
     { id: "finance", name: "Finance" },
     { id: "education", name: "Education" },
     { id: "technology", name: "Technology" },
-  ]
+  ];
 
   return (
     <section className="py-12 md:py-16">
@@ -75,5 +82,5 @@ export default function CaseStudiesFilter() {
         </div>
       </div>
     </section>
-  )
+  );
 }

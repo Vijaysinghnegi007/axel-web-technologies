@@ -1,12 +1,11 @@
-// Add the missing related-case-studies.tsx component
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Link from "next/link"
-import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ArrowRight } from "lucide-react"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight } from "lucide-react";
 
 export default function RelatedCaseStudies({ currentSlug }) {
   const relatedCaseStudies = [
@@ -39,7 +38,7 @@ export default function RelatedCaseStudies({ currentSlug }) {
     },
   ]
     .filter((study) => study.slug !== currentSlug)
-    .slice(0, 3)
+    .slice(0, 3);
 
   return (
     <section className="py-20 md:py-32 bg-muted/30">
@@ -118,5 +117,5 @@ export default function RelatedCaseStudies({ currentSlug }) {
         </div>
       </div>
     </section>
-  )
+  );
 }

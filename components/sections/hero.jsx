@@ -1,24 +1,23 @@
+"use client";
 
-"use client"
-
-import { useEffect, useRef } from "react"
-import { motion } from "framer-motion"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import  TypewriterEffect  from "@/components/ui/typewriter-effect"
-import { ArrowRight, Code, Cpu, Database, Globe } from "lucide-react"
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { ArrowRight, Code, Cpu, Database, Globe } from "lucide-react";
 
 export default function Hero() {
-  const sectionRef = useRef(null)
-  const parallaxRef = useRef(null)
+  const sectionRef = useRef(null);
+  const parallaxRef = useRef(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger);
 
-    const section = sectionRef.current
-    const parallax = parallaxRef.current
+    const section = sectionRef.current;
+    const parallax = parallaxRef.current;
 
     if (section && parallax) {
       gsap.to(parallax, {
@@ -29,54 +28,44 @@ export default function Hero() {
           end: "bottom top",
           scrub: true,
         },
-      })
+      });
     }
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
-  }, [])
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   const words = [
-    {
-      text: "Innovative",
-    },
-    {
-      text: "IT",
-    },
-    {
-      text: "Solutions",
-    },
-    {
-      text: "for",
-    },
-    {
-      text: "Modern",
-    },
-    {
-      text: "Businesses",
-    },
-  ]
+    { text: "Innovative" },
+    { text: "IT" },
+    { text: "Solutions" },
+    { text: "for" },
+    { text: "Modern" },
+    { text: "Businesses" },
+  ];
 
   const floatingIcons = [
     { icon: <Code className="h-8 w-8" />, delay: 0, x: -20, y: -30 },
     { icon: <Globe className="h-10 w-10" />, delay: 0.2, x: 30, y: 20 },
     { icon: <Cpu className="h-6 w-6" />, delay: 0.4, x: -40, y: 40 },
     { icon: <Database className="h-7 w-7" />, delay: 0.6, x: 50, y: -40 },
-  ]
+  ];
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Parallax Background */}
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+    >
       <div
         ref={parallaxRef}
         className="absolute inset-0 z-0"
         style={{
-          background: "radial-gradient(circle at center, rgba(var(--primary-rgb), 0.15) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle at center, rgba(var(--primary-rgb), 0.15) 0%, transparent 70%)",
         }}
       />
 
-      {/* Floating Icons */}
       {floatingIcons.map((item, index) => (
         <motion.div
           key={index}
@@ -114,7 +103,10 @@ export default function Hero() {
               <span className="text-gradient">Axel Web</span> Technologies
             </h1>
             <div className="h-20">
-              <TypewriterEffect words={words} className="text-2xl md:text-3xl" />
+              <TypewriterEffect
+                words={words}
+                className="text-2xl md:text-3xl"
+              />
             </div>
           </motion.div>
 
@@ -124,7 +116,8 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-[700px] text-muted-foreground text-lg md:text-xl"
           >
-            We build cutting-edge digital solutions that transform businesses and create exceptional user experiences.
+            We build cutting-edge digital solutions that transform businesses
+            and create exceptional user experiences.
           </motion.p>
 
           <motion.div
@@ -139,14 +132,13 @@ export default function Hero() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-base">
+            <Button asChild variant="outline" size="lg" className="text-base ">
               <Link href="/#portfolio">View Our Work</Link>
             </Button>
           </motion.div>
         </div>
       </div>
 
-      {/* Wave Divider */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -162,5 +154,5 @@ export default function Hero() {
         </svg>
       </div>
     </section>
-  )
+  );
 }

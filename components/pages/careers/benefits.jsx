@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Clock, Globe, Laptop, BookOpen, Heart, Users } from "lucide-react"
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Clock, Globe, Laptop, BookOpen, Heart, Users } from "lucide-react";
 
 export default function Benefits() {
   const benefits = [
@@ -36,7 +36,7 @@ export default function Benefits() {
       title: "Collaborative Culture",
       description: "Work with talented individuals in a supportive and inclusive environment.",
     },
-  ]
+  ];
 
   return (
     <section className="py-20 md:py-32">
@@ -79,5 +79,5 @@ export default function Benefits() {
         </div>
       </div>
     </section>
-  )
+  );
 }

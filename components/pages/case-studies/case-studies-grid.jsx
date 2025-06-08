@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Link from "next/link"
-import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Check } from "lucide-react"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Check } from "lucide-react";
 
 export default function CaseStudiesGrid() {
   const caseStudies = [
@@ -70,7 +70,7 @@ export default function CaseStudiesGrid() {
       image: "/placeholder.svg",
       results: ["45% increase in online sales", "120% ROI on marketing spend"],
     },
-  ]
+  ];
 
   return (
     <section className="py-12 md:py-20">
@@ -88,7 +88,7 @@ export default function CaseStudiesGrid() {
                 <CardContent className="p-0">
                   <Link href={`/case-studies/${study.slug}`} className="block overflow-hidden">
                     <Image
-                      src={study.image || "/placeholder.svg"}
+                      src={study.image}
                       alt={study.title}
                       width={400}
                       height={225}
@@ -97,7 +97,9 @@ export default function CaseStudiesGrid() {
                   </Link>
                   <div className="p-6">
                     <div className="flex flex-wrap gap-2 mb-3">
-                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20">{study.industry}</Badge>
+                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
+                        {study.industry}
+                      </Badge>
                     </div>
                     <Link href={`/case-studies/${study.slug}`}>
                       <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
@@ -108,8 +110,8 @@ export default function CaseStudiesGrid() {
                       Client: <span className="font-medium">{study.client}</span>
                     </p>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {study.services.map((service, serviceIndex) => (
-                        <Badge key={serviceIndex} variant="outline" className="bg-primary/5">
+                      {study.services.map((service, i) => (
+                        <Badge key={i} variant="outline" className="bg-primary/5">
                           {service}
                         </Badge>
                       ))}
@@ -117,8 +119,8 @@ export default function CaseStudiesGrid() {
                     <div className="space-y-2 mb-4">
                       <h4 className="font-semibold text-sm">Key Results:</h4>
                       <ul className="space-y-1">
-                        {study.results.map((result, resultIndex) => (
-                          <li key={resultIndex} className="flex items-start text-sm">
+                        {study.results.map((result, i) => (
+                          <li key={i} className="flex items-start text-sm">
                             <Check className="h-4 w-4 text-primary mr-2 mt-0.5" />
                             <span>{result}</span>
                           </li>
@@ -139,5 +141,5 @@ export default function CaseStudiesGrid() {
         </div>
       </div>
     </section>
-  )
+  );
 }

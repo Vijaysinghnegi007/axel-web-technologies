@@ -6,14 +6,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
@@ -42,10 +35,9 @@ export default function ContactForm() {
     },
   })
 
-  const onSubmit = (values) => {
+  function onSubmit(values) {
     setIsSubmitting(true)
 
-    // Simulate async form submission
     setTimeout(() => {
       setIsSubmitting(false)
       form.reset()

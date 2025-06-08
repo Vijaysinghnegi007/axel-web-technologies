@@ -1,22 +1,28 @@
 "use client"
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+
+import { useEffect, useState } from "react"
+import { motion } from "framer-motion"
+import Link from "next/link"
+import Image from "next/image"
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { ArrowRight, Calendar, Clock } from "lucide-react"
 
 export default function Blog() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Simulate fetching blog posts
     const fetchPosts = () => {
       setTimeout(() => {
-        setPosts(blogPosts);
-        setLoading(false);
-      }, 1000);
-    };
+        setPosts(blogPosts)
+        setLoading(false)
+      }, 1000)
+    }
 
-    fetchPosts();
-  }, []);
+    fetchPosts()
+  }, [])
 
   return (
     <section id="blog" className="py-20 md:py-32 bg-muted/30">
@@ -41,8 +47,8 @@ export default function Blog() {
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(3)].map((_, index) => (
-              <div key={index} className="card overflow-hidden h-full">
-                <div className="card-content p-0">
+              <Card key={index} className="overflow-hidden h-full">
+                <CardContent className="p-0">
                   <div className="h-48 bg-muted animate-pulse" />
                   <div className="p-6 space-y-4">
                     <div className="h-4 w-1/4 bg-muted animate-pulse rounded" />
@@ -52,8 +58,8 @@ export default function Blog() {
                     <div className="h-4 w-3/4 bg-muted animate-pulse rounded" />
                     <div className="h-10 w-1/3 bg-muted animate-pulse rounded" />
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         ) : (
@@ -79,66 +85,59 @@ export default function Blog() {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <button className="button large">
-            <a href="#">
+          <Button asChild size="lg">
+            <Link href="#">
               View All Posts
-              {/* Replace ArrowRight icon with a placeholder or simple text */}
-              <span className="ml-2">→</span>
-            </a>
-          </button>
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </motion.div>
       </div>
     </section>
-  );
+  )
 }
 
 function BlogCard({ post }) {
   return (
-    <div className="card overflow-hidden h-full group">
-      <div className="card-content p-0">
-        <a href={`/blog/${post.slug}`} className="block overflow-hidden">
-          {/* Replace Next.js Image with standard img tag */}
-          <img
+    <Card className="overflow-hidden h-full group">
+      <CardContent className="p-0">
+        <Link href={`/blog/${post.slug}`} className="block overflow-hidden">
+          <Image
             src={post.image || "/placeholder.svg"}
             alt={post.title}
             width={400}
             height={225}
             className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
           />
-        </a>
+        </Link>
         <div className="p-6">
           <div className="flex items-center gap-4 mb-3">
-            {/* Replace Badge with span */}
-            <span className="badge outline bg-primary/5">
+            <Badge variant="outline" className="bg-primary/5">
               {post.category}
-            </span>
+            </Badge>
             <div className="flex items-center text-xs text-muted-foreground">
-              {/* Replace Calendar icon with a placeholder or simple text */}
-              <span className="h-3 w-3 mr-1">📅</span>
+              <Calendar className="h-3 w-3 mr-1" />
               {post.date}
             </div>
             <div className="flex items-center text-xs text-muted-foreground">
-              {/* Replace Clock icon with a placeholder or simple text */}
-              <span className="h-3 w-3 mr-1">⏰</span>
+              <Clock className="h-3 w-3 mr-1" />
               {post.readTime} min read
             </div>
           </div>
-          <a href={`/blog/${post.slug}`}>
-            <h3 className="card-title mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
-          </a>
-          <p className="card-description mb-4">{post.excerpt}</p>
-          {/* Replace Button with anchor tag or button */}
-          <button className="button ghost p-0 h-auto text-primary">
-            <a href={`/blog/${post.slug}`}>
+          <Link href={`/blog/${post.slug}`}>
+            <CardTitle className="mb-2 group-hover:text-primary transition-colors">{post.title}</CardTitle>
+          </Link>
+          <CardDescription className="mb-4">{post.excerpt}</CardDescription>
+          <Button variant="ghost" className="p-0 h-auto text-primary" asChild>
+            <Link href={`/blog/${post.slug}`}>
               Read More
-              {/* Replace ArrowRight icon with a placeholder or simple text */}
-              <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
-            </a>
-          </button>
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Button>
         </div>
-      </div>
-    </div>
-  );
+      </CardContent>
+    </Card>
+  )
 }
 
 const blogPosts = [
@@ -193,4 +192,4 @@ const blogPosts = [
       role: "UX Designer",
     },
   },
-];
+]

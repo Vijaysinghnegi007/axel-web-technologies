@@ -1,17 +1,17 @@
-import PropTypes from "prop-types"
-import Header from "@/components/layout/header"
-import Footer from "@/components/layout/footer"
+import React from "react";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
+import Breadcrumb from "@/components/layout/breadcrumb";
+import ScrollToTop from "@/components/ui/scroll-to-top";
 
 export default function MainLayout({ children }) {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 pt-16 md:pt-20">{children}</main>
+      <Breadcrumb />
+      <main className="flex-1 relative">{children}</main>
       <Footer />
+      <ScrollToTop />
     </div>
-  )
-}
-
-MainLayout.propTypes = {
-  children: PropTypes.node.isRequired,
+  );
 }

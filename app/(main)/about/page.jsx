@@ -1,16 +1,17 @@
-import  { Metadata } from "next"
-import AboutHero from "@/components/pages/about/about-hero"
-import AboutContent from "@/components/pages/about/about-content"
-import Values from "@/components/pages/about/values"
-import Stats from "@/components/pages/about/stats"
-import Team from "@/components/pages/about/team"
-import Timeline from "@/components/pages/about/timeline"
-import CTA from "@/components/shared/cta"
+import AboutHero from "@/components/pages/about/about-hero";
+import AboutContent from "@/components/pages/about/about-content";
+import Values from "@/components/pages/about/values";
+import Stats from "@/components/pages/about/stats";
+import Team from "@/components/pages/about/team";
+import Timeline from "@/components/pages/about/timeline";
+import CTA from "@/components/shared/cta";
 
-export const  Metadata = {
+// meta data for SEO
+export const metadata = {
   title: "About Us | Axel Web Technologies",
-  description: "Learn about our company, our mission, values, and the team behind Axel Web Technologies.",
-}
+  description:
+    "Learn about our company, our mission, values, and the team behind Axel Web Technologies.",
+};
 
 export default function AboutPage() {
   return (
@@ -28,5 +29,5 @@ export default function AboutPage() {
         buttonLink="/contact"
       />
     </main>
-  )
+  );
 }

@@ -1,15 +1,14 @@
-import ServicesHero from "@/components/pages/services/services-hero";
-import ServicesList from "@/components/pages/services/services-list";
-import ServiceProcess from "@/components/pages/services/service-process";
-import Technologies from "@/components/pages/services/technologies";
-import CTA from "@/components/shared/cta";
+import ServicesHero from "@/components/pages/services/services-hero"
+import ServicesList from "@/components/pages/services/services-list"
+import ServiceProcess from "@/components/pages/services/service-process"
+import Technologies from "@/components/pages/services/technologies"
+import CTA from "@/components/shared/cta"
 
-// Optional: You can export metadata like this dynamically in a JavaScript file
 export const metadata = {
   title: "Services | Axel Web Technologies",
   description:
     "Explore our comprehensive range of IT services including web development, mobile apps, cloud solutions, and more.",
-};
+}
 
 export default function ServicesPage() {
   return (
@@ -25,5 +24,5 @@ export default function ServicesPage() {
         buttonLink="/contact"
       />
     </main>
-  );
+  )
 }

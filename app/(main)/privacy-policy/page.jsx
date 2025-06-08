@@ -1,8 +1,7 @@
-
 export const metadata = {
   title: "Privacy Policy | Axel Web Technologies",
   description: "Our privacy policy outlines how we collect, use, and protect your personal information.",
-};
+}
 
 export default function PrivacyPolicyPage() {
   return (
@@ -92,5 +91,5 @@ export default function PrivacyPolicyPage() {
         </div>
       </div>
     </main>
-  );
+  )
 }

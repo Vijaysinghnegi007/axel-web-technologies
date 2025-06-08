@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function CultureGallery() {
   const images = [
@@ -11,7 +11,7 @@ export default function CultureGallery() {
     { src: "/placeholder.svg", alt: "Company retreat" },
     { src: "/placeholder.svg", alt: "Hackathon" },
     { src: "/placeholder.svg", alt: "Office celebration" },
-  ]
+  ];
 
   return (
     <section className="py-20 md:py-32 bg-muted/30">
@@ -42,7 +42,7 @@ export default function CultureGallery() {
               className="relative overflow-hidden rounded-lg aspect-video group"
             >
               <Image
-                src={image.src || "/placeholder.svg"}
+                src={image.src}
                 alt={image.alt}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -52,5 +52,5 @@ export default function CultureGallery() {
         </div>
       </div>
     </section>
-  )
+  );
 }

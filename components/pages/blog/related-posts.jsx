@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
@@ -73,7 +72,7 @@ export default function RelatedPosts() {
                 <CardContent className="p-0">
                   <Link href={`/blog/${post.slug}`} className="block overflow-hidden">
                     <Image
-                      src={post.image || "/placeholder.svg"}
+                      src={post.image}
                       alt={post.title}
                       width={400}
                       height={225}

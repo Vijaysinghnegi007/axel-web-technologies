@@ -1,17 +1,18 @@
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import RelatedCaseStudies from "@/components/pages/case-studies/related-case-studies"
-import CTA from "@/components/shared/cta"
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import RelatedCaseStudies from "@/components/pages/case-studies/related-case-studies";
+import CTA from "@/components/shared/cta";
 
+// Optional metadata for Next.js App Router (can be removed or handled in Head if using Pages Router)
 export const metadata = {
   title: "Case Study | Axel Web Technologies",
   description: "Detailed case study of a successful client project and solution.",
-}
+};
 
 export default function CaseStudyPage({ params }) {
-  // In a real application, we fetch the case study data based on the slug
+  // Example case study object — in a real app, you would fetch this by `params.slug`
   const caseStudy = {
     title: "E-Commerce Platform Redesign",
     client: "RetailTech Inc.",
@@ -35,7 +36,7 @@ export default function CaseStudyPage({ params }) {
       author: "Jane Smith",
       position: "CTO, RetailTech Inc.",
     },
-  }
+  };
 
   return (
     <main className="pt-16 md:pt-24 pb-16">
@@ -61,7 +62,12 @@ export default function CaseStudyPage({ params }) {
           </div>
 
           <div className="relative w-full aspect-video mb-12 rounded-lg overflow-hidden">
-            <Image src={caseStudy.image} alt={caseStudy.title} fill className="object-cover" />
+            <Image
+              src={caseStudy.image || "/placeholder.svg"}
+              alt={caseStudy.title}
+              fill
+              className="object-cover"
+            />
           </div>
 
           <div className="prose dark:prose-invert max-w-none">
@@ -114,5 +120,5 @@ export default function CaseStudyPage({ params }) {
         buttonLink="/contact"
       />
     </main>
-  )
+  );
 }

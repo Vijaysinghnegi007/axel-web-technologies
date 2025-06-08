@@ -1,9 +1,14 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { motion } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function FAQ() {
   const faqs = [
@@ -32,7 +37,7 @@ export default function FAQ() {
       answer:
         "Our development process includes discovery, planning, development, testing, deployment, and support phases. We follow agile methodologies and maintain clear communication throughout the project.",
     },
-  ]
+  ];
 
   return (
     <section className="py-20 md:py-32 bg-muted/30">
@@ -63,7 +68,9 @@ export default function FAQ() {
                 viewport={{ once: true }}
               >
                 <AccordionItem value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+                  <AccordionTrigger className="text-left">
+                    {faq.question}
+                  </AccordionTrigger>
                   <AccordionContent>{faq.answer}</AccordionContent>
                 </AccordionItem>
               </motion.div>
@@ -78,7 +85,8 @@ export default function FAQ() {
             className="text-center mt-12"
           >
             <p className="text-muted-foreground mb-4">
-              Have more questions? Check out our comprehensive FAQ page or contact us directly.
+              Have more questions? Check out our comprehensive FAQ page or
+              contact us directly.
             </p>
             <Button asChild>
               <Link href="/faqs">View All FAQs</Link>
@@ -87,5 +95,5 @@ export default function FAQ() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function ContactCTA() {
   return (
@@ -16,10 +16,12 @@ export default function ContactCTA() {
           viewport={{ once: true }}
           className="flex flex-col items-center text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4">Still Have Questions?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4">
+            Still Have Questions?
+          </h2>
           <p className="text-muted-foreground text-lg max-w-[800px] mx-auto mb-8">
-            If you couldn't find the answer to your question, our team is here to help. Contact us and we'll get back to
-            you as soon as possible.
+            If you couldn't find the answer to your question, our team is here
+            to help. Contact us and we'll get back to you as soon as possible.
           </p>
           <Button asChild size="lg">
             <Link href="/contact">
@@ -30,5 +32,5 @@ export default function ContactCTA() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

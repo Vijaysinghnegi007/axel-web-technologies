@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Clients() {
   const clients = [
@@ -13,7 +13,7 @@ export default function Clients() {
     { name: "Client 6", logo: "/placeholder-logo.svg" },
     { name: "Client 7", logo: "/placeholder-logo.svg" },
     { name: "Client 8", logo: "/placeholder-logo.svg" },
-  ]
+  ];
 
   return (
     <section className="py-16 md:py-24">
@@ -57,5 +57,5 @@ export default function Clients() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { motion, useInView } from "framer-motion"
-import { Award, Clock, Users, Globe } from "lucide-react"
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Award, Clock, Users, Globe } from "lucide-react";
 
 export default function Stats() {
   const stats = [
@@ -10,10 +10,10 @@ export default function Stats() {
     { icon: <Users className="h-8 w-8" />, value: 200, label: "Happy Clients", suffix: "+" },
     { icon: <Award className="h-8 w-8" />, value: 500, label: "Projects Completed", suffix: "+" },
     { icon: <Globe className="h-8 w-8" />, value: 15, label: "Countries Served", suffix: "+" },
-  ]
+  ];
 
-  const counterRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(counterRef, { once: true })
+  const counterRef = useRef(null);
+  const isInView = useInView(counterRef, { once: true });
 
   return (
     <section className="py-20 md:py-32">
@@ -52,47 +52,47 @@ export default function Stats() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-// Counter Animation 
+// Counter Animation Component
 function CounterAnimation({ target, suffix = "" }) {
-  const [count, setCount] = useState(0)
-  const nodeRef = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(nodeRef, { once: true })
+  const [count, setCount] = useState(0);
+  const nodeRef = useRef(null);
+  const isInView = useInView(nodeRef, { once: true });
 
   useEffect(() => {
-    let startTimestamp
-    let animationFrameId
-    const duration = 2000 // 2 seconds
+    let startTimestamp;
+    let animationFrameId;
+    const duration = 2000; // 2 seconds
 
     const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1)
-      const currentCount = Math.floor(progress * target)
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const currentCount = Math.floor(progress * target);
 
-      setCount(currentCount)
+      setCount(currentCount);
 
       if (progress < 1) {
-        animationFrameId = requestAnimationFrame(step)
+        animationFrameId = requestAnimationFrame(step);
       } else {
-        setCount(target)
+        setCount(target);
       }
-    }
+    };
 
     if (isInView) {
-      animationFrameId = requestAnimationFrame(step)
+      animationFrameId = requestAnimationFrame(step);
     }
 
     return () => {
-      cancelAnimationFrame(animationFrameId)
-    }
-  }, [target, isInView])
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [target, isInView]);
 
   return (
     <span ref={nodeRef}>
       {count}
       {suffix}
     </span>
-  )
+  );
 }
