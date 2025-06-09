@@ -199,7 +199,7 @@ export default function Portfolio() {
             </div>
           </div>
 
-          <div className="flex justify-center mt-8 gap-2">
+          <div className="flex justify-center mt-80 gap-2">
             {projects.map((_, index) => (
               <button
                 key={index}
@@ -227,8 +227,8 @@ export default function Portfolio() {
                       <Image
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
-                        width={400}
-                        height={200}
+                        width={300}
+                        height={150}
                         className="w-full h-auto object-cover rounded-md"
                       />
                     </div>

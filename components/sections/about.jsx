@@ -174,7 +174,7 @@ export default function About() {
               Our approach combines creativity with technology, allowing you to visualize and customize every detail of
               your home, from kitchens to outdoor spaces, without needing a professional designer.
             </p>
-            < motion.div
+            <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
