@@ -1,8 +1,10 @@
+import { Metadata } from "next"
 import { PortfolioManager } from "@/components/admin/portfolio-manager";
-export const metadata = {
+
+export const Metadata = {
   title: "Portfolio Management | Admin Dashboard",
   description: "Manage portfolio items for Next-Gen IT Solutions website",
-};
+}
 
 // Default export for the page component
 export default function PortfolioManagementPage() {
