@@ -225,7 +225,7 @@ export default function About() {
         </div>
 
         {/* Stats Counter */}
-        <div ref={counterRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+       <div ref={counterRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
