@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect } from "react"
 import AdminSidebar from "@/components/admin/admin-sidebar"
 import AdminHeader from "@/components/admin/admin-header"
