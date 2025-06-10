@@ -1,7 +1,6 @@
-import { Metadata } from "next"
 import { BlogManager } from "@/components/admin/blog-manager"
 
-export const Metadata = {
+export const metadata = {
   title: "Blog Management | Admin Dashboard",
   description: "Manage blog posts for Next-Gen IT Solutions website",
 }

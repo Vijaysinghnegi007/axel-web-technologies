@@ -1,4 +1,3 @@
-// "use client" is not needed for layouts; this file runs on both client & server.
 
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"

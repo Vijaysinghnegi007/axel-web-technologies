@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { AdminDashboard } from "@/components/admin/admin-dashboard";
 
 const metadata = {
