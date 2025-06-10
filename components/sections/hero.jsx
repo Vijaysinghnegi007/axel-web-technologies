@@ -132,7 +132,7 @@ export default function Hero() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-base ">
+            <Button asChild variant="outline" size="lg" className="text-base">
               <Link href="/#portfolio">View Our Work</Link>
             </Button>
           </motion.div>

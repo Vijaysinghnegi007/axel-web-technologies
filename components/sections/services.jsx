@@ -93,35 +93,75 @@ export default function Services() {
           </motion.div>
         </div>
 
-        <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="mb-12">
-          <div className="flex justify-center">
-            <TabsList className="flex flex-wrap justify-center mb-8">
-              {categories.map((category) => (
-                <TabsTrigger key={category.value} value={category.value} className="px-4 py-2 m-1">
-                  {category.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </div>
+        <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
+  <div className="flex justify-center mb-8">
+    <TabsList className="inline-flex h-auto p-1 bg-muted rounded-lg border shadow-sm">
+      <div className="flex flex-wrap gap-1 max-w-4xl">
+        {categories.map((category) => (
+          <TabsTrigger 
+            key={category.value} 
+            value={category.value} 
+            className="
+              relative px-4 py-2.5 text-sm font-medium transition-all duration-200
+              data-[state=active]:bg-background 
+              data-[state=active]:text-foreground
+              data-[state=active]:shadow-sm
+              data-[state=inactive]:text-muted-foreground
+              data-[state=inactive]:hover:text-foreground
+              data-[state=inactive]:hover:bg-muted/60
+              rounded-md border-0 whitespace-nowrap
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+              disabled:pointer-events-none disabled:opacity-50
+            "
+          >
+            {category.label}
+          </TabsTrigger>
+        ))}
+      </div>
+    </TabsList>
+  </div>
 
-          <TabsContent value={activeTab}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <AnimatePresence mode="wait">
-                {filteredServices.map((service, index) => (
-                  <motion.div
-                    key={service.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                  >
-                    <ServiceCard service={service} />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-          </TabsContent>
-        </Tabs>
+  {categories.map((category) => (
+    <TabsContent 
+      key={category.value}
+      value={category.value}
+      className="
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+        mt-0 data-[state=inactive]:hidden
+      "
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
+        <AnimatePresence mode="wait">
+          {(activeTab === category.value ? filteredServices : []).map((service, index) => (
+            <motion.div
+              key={`${service.id}-${activeTab}`}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                transition: { 
+                  duration: 0.4, 
+                  delay: index * 0.1,
+                  ease: [0.23, 1, 0.32, 1] // Custom easing for smoother animation
+                }
+              }}
+              exit={{ 
+                opacity: 0, 
+                y: -10, 
+                scale: 0.95,
+                transition: { duration: 0.2 }
+              }}
+              layout
+            >
+              <ServiceCard service={service} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+    </TabsContent>
+  ))}
+</Tabs>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

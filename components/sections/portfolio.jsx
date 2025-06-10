@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react"
+import { ChevronLeft, ChevronRight, ExternalLink, Github, X } from "lucide-react"
 import Link from "next/link"
 
 export default function Portfolio() {
@@ -129,7 +129,7 @@ export default function Portfolio() {
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute left-4 z-10 rounded-full bg-background/80 backdrop-blur-sm"
+                className="absolute left-4 z-10 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90 transition-colors"
                 onClick={prevSlide}
                 aria-label="Previous project"
               >
@@ -190,7 +190,7 @@ export default function Portfolio() {
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute right-4 z-10 rounded-full bg-background/80 backdrop-blur-sm"
+                className="absolute right-4 z-10 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90 transition-colors"
                 onClick={nextSlide}
                 aria-label="Next project"
               >
@@ -199,7 +199,7 @@ export default function Portfolio() {
             </div>
           </div>
 
-          <div className="flex justify-center mt-80 gap-2">
+          <div className="flex justify-center mt-8 gap-2">
             {projects.map((_, index) => (
               <button
                 key={index}
@@ -221,7 +221,11 @@ export default function Portfolio() {
             {projects
               .filter((_, idx) => idx !== currentIndex)
               .map((project) => (
-                <Card key={project.id} className="cursor-pointer" onClick={() => handleOpenProjectDetails(project)}>
+                <Card 
+                  key={project.id} 
+                  className="cursor-pointer transition-transform hover:scale-105 hover:shadow-lg" 
+                  onClick={() => handleOpenProjectDetails(project)}
+                >
                   <CardContent className="p-4">
                     <div className="relative rounded-md overflow-hidden mb-4">
                       <Image
@@ -229,17 +233,22 @@ export default function Portfolio() {
                         alt={project.title}
                         width={300}
                         height={150}
-                        className="w-full h-auto object-cover rounded-md"
+                        className="w-full h-32 object-cover rounded-md"
                       />
                     </div>
                     <h4 className="text-lg font-semibold mb-2">{project.title}</h4>
-                    <p className="text-muted-foreground mb-2">{project.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, idx) => (
-                        <Badge key={idx} variant="outline" className="bg-primary/5">
+                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{project.description}</p>
+                    <div className="flex flex-wrap gap-1">
+                      {project.technologies.slice(0, 3).map((tech, idx) => (
+                        <Badge key={idx} variant="outline" className="bg-primary/5 text-xs">
                           {tech}
                         </Badge>
                       ))}
+                      {project.technologies.length > 3 && (
+                        <Badge variant="outline" className="bg-muted text-xs">
+                          +{project.technologies.length - 3}
+                        </Badge>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -248,44 +257,61 @@ export default function Portfolio() {
         </div>
       </div>
 
+      {/* Fixed Dialog with proper z-index and positioning */}
       <Dialog open={!!selectedProject} onOpenChange={closeProjectDetails}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-4xl max-h-[60vh] overflow-y-auto z-[10000 !important] top-[30vh] translate-y-0">
+          {/* Custom close button to ensure visibility */}
+
+          
           {selectedProject && (
-            <>
-              <DialogHeader>
-                <DialogTitle>{selectedProject.title}</DialogTitle>
-                <DialogDescription>{selectedProject.category}</DialogDescription>
+            <div className="space-y-6">
+              <DialogHeader className="pr-8">
+                <DialogTitle className="text-2xl font-bold">{selectedProject.title}</DialogTitle>
+                <DialogDescription className="text-lg">
+                  <Badge variant="outline" className="mt-2">{selectedProject.category}</Badge>
+                </DialogDescription>
               </DialogHeader>
-              <Image
-                src={selectedProject.image || "/placeholder.svg"}
-                alt={selectedProject.title}
-                width={600}
-                height={300}
-                className="w-full h-auto rounded-lg my-4 object-cover"
-              />
-              <p className="text-muted-foreground mb-4">{selectedProject.longDescription}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {selectedProject.technologies.map((tech, index) => (
-                  <Badge key={index} variant="outline" className="bg-primary/5">
-                    {tech}
-                  </Badge>
-                ))}
+              
+              <div className="relative rounded-lg overflow-hidden">
+                <Image
+                  src={selectedProject.image || "/placeholder.svg"}
+                  alt={selectedProject.title}
+                  width={800}
+                  height={400}
+                  className="w-full h-64 md:h-80 object-cover rounded-lg"
+                />
               </div>
-              <div className="flex gap-4">
-                <Button variant="default" asChild>
-                  <Link href={selectedProject.link} target="_blank" rel="noopener noreferrer">
-                    Live Demo
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button variant="outline" asChild>
-                  <Link href={selectedProject.github} target="_blank" rel="noopener noreferrer">
-                    GitHub
-                    <Github className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+              
+              <div className="space-y-4">
+                <p className="text-muted-foreground leading-relaxed">{selectedProject.longDescription}</p>
+                
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Technologies Used</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.technologies.map((tech, index) => (
+                      <Badge key={index} variant="outline" className="bg-primary/5">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="flex gap-3 pt-4">
+                  <Button variant="default" asChild>
+                    <Link href={selectedProject.link} target="_blank" rel="noopener noreferrer">
+                      Live Demo
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link href={selectedProject.github} target="_blank" rel="noopener noreferrer">
+                      View Code
+                      <Github className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
               </div>
-            </>
+            </div>
           )}
         </DialogContent>
       </Dialog>
