@@ -79,7 +79,7 @@ const users = [
   },
 ]
 
-export function UserManager() {
+export default function UserManager() {
   const [searchQuery, setSearchQuery] = useState("")
   const [roleFilter, setRoleFilter] = useState("all")
   const [statusFilter, setStatusFilter] = useState("all")

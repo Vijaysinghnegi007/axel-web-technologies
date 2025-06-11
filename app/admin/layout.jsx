@@ -2,7 +2,7 @@
 import { useEffect } from "react"
 import AdminSidebar from "@/components/admin/admin-sidebar"
 import AdminHeader from "@/components/admin/admin-header"
-import AdminAuthCheck from "@/components/admin/admin-auth-check"
+// import AdminAuthCheck from "@/components/admin/admin-auth-check-one"
 
 const metadata = {
   title: "Admin Dashboard | Axel Web Technologies",
@@ -24,7 +24,7 @@ export default function AdminLayout({ children }) {
   }, [])
 
   return (
-    <AdminAuthCheck>
+   
       <div className="min-h-screen flex flex-col md:flex-row bg-muted/30">
         <AdminSidebar />
         <div className="flex-1 flex flex-col min-h-screen max-h-screen overflow-hidden">
@@ -32,6 +32,6 @@ export default function AdminLayout({ children }) {
           <main className="flex-1 p-4 md:p-6 overflow-y-auto">{children}</main>
         </div>
       </div>
-    </AdminAuthCheck>
+    
   )
 }

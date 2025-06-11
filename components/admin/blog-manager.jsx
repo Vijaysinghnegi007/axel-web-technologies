@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
@@ -26,74 +26,22 @@ import {
 } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-// Sample blog data
-const blogPosts = [
-  {
-    id: "1",
-    title: "The Future of Web Development in 2024",
-    category: "web-development",
-    image: "/placeholder.svg?height=600&width=800",
-    excerpt: "Exploring the latest trends and technologies shaping the future of web development.",
-    author: "John Smith",
-    date: "May 10, 2023",
-    status: "published",
-    readTime: "5 min read",
-  },
-  {
-    id: "2",
-    title: "How AI is Transforming the Tech Industry",
-    category: "artificial-intelligence",
-    image: "/placeholder.svg?height=600&width=800",
-    excerpt: "An in-depth look at how artificial intelligence is revolutionizing technology.",
-    author: "Jane Doe",
-    date: "April 22, 2023",
-    status: "published",
-    readTime: "8 min read",
-  },
-  {
-    id: "3",
-    title: "Best Practices for Mobile App Development",
-    category: "mobile-development",
-    image: "/placeholder.svg?height=600&width=800",
-    excerpt: "Essential tips and best practices for creating successful mobile applications.",
-    author: "Mike Johnson",
-    date: "March 15, 2023",
-    status: "published",
-    readTime: "6 min read",
-  },
-  {
-    id: "4",
-    title: "The Rise of Serverless Architecture",
-    category: "cloud-computing",
-    image: "/placeholder.svg?height=600&width=800",
-    excerpt: "Understanding the benefits and challenges of serverless architecture.",
-    author: "Sarah Williams",
-    date: "February 28, 2023",
-    status: "draft",
-    readTime: "7 min read",
-  },
-  {
-    id: "5",
-    title: "UI/UX Design Trends to Watch in 2024",
-    category: "design",
-    image: "/placeholder.svg?height=600&width=800",
-    excerpt: "The latest design trends that are shaping user experiences across digital platforms.",
-    author: "Alex Chen",
-    date: "January 15, 2023",
-    status: "published",
-    readTime: "4 min read",
-  },
-]
+// ❌ Removed TypeScript type from BlogPost
+import { blogStorage } from "@/lib/storage"
 
 export function BlogManager() {
+  const [posts, setPosts] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
   const [categoryFilter, setCategoryFilter] = useState("all")
   const [statusFilter, setStatusFilter] = useState("all")
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
-  const [postToDelete, setPostToDelete] = useState<string | null>(null)
+  const [postToDelete, setPostToDelete] = useState(null)
 
-  // Filter posts based on search query, category, and status
-  const filteredPosts = blogPosts.filter((post) => {
+  useEffect(() => {
+    setPosts(blogStorage.getAll())
+  }, [])
+
+  const filteredPosts = posts.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -106,10 +54,12 @@ export function BlogManager() {
   })
 
   const handleDeleteConfirm = () => {
-    // In a real app, you would delete the post from the database
-    console.log(`Deleting post with ID: ${postToDelete}`)
-    setDeleteDialogOpen(false)
-    setPostToDelete(null)
+    if (postToDelete) {
+      blogStorage.delete(postToDelete)
+      setPosts(blogStorage.getAll())
+      setDeleteDialogOpen(false)
+      setPostToDelete(null)
+    }
   }
 
   return (

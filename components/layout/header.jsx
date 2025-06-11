@@ -464,7 +464,7 @@ export default function Header() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: "100%" }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed top-0 right-0 bottom-0 w-[90%] max-w-sm bg-background shadow-2xl z-50 lg:hidden overflow-y-auto border-l border-border"
+              className="fixed top-0 right-0 bottom-0 w-[90%] max-w-sm bg-background shadow-2xl z-50 lg:hidden overflow-y-auto border-l border-border h-screen"
               onClick={(e) => e.stopPropagation()}
               role="dialog"
               aria-modal="true"

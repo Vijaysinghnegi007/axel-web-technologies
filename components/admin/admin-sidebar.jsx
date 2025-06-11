@@ -16,7 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function AdminSidebar() {
+export default function AdminSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 

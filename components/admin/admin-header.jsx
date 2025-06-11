@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-export function AdminHeader() {
+export default function AdminHeader() {
   const [searchQuery, setSearchQuery] = useState("")
   const [username, setUsername] = useState("")
   const router = useRouter()
