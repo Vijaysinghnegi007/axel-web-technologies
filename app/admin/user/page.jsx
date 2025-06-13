@@ -1,4 +1,4 @@
-import { UserManager } from "@/components/admin/user-manager"
+import UserManager  from "@/components/admin/user-manager"
 
 export const metadata = {
   title: "User Management | Admin Dashboard",
