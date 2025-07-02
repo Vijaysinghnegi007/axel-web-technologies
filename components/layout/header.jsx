@@ -569,13 +569,13 @@ export default function Header() {
                   <div className="px-4 space-y-2 text-sm">
                     <div className="flex items-center gap-2">
                       <Phone className="h-4 w-4 text-primary" />
-                      <a href={`tel:${contactInfo.phone}`} className="hover:text-primary transition-colors">
+                      <a href={`tel:${contactInfo.phone}`} className="hover:text-primary transition-colors flex items-center">
                         {contactInfo.phone}
                       </a>
                     </div>
                     <div className="flex items-center gap-2">
                       <Mail className="h-4 w-4 text-primary" />
-                      <a href={`mailto:${contactInfo.email}`} className="hover:text-primary transition-colors">
+                      <a href={`mailto:${contactInfo.email}`} className="hover:text-primary transition-colors flex items-center">
                         {contactInfo.email}
                       </a>
                     </div>

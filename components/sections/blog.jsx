@@ -128,7 +128,7 @@ function BlogCard({ post }) {
             <CardTitle className="mb-2 group-hover:text-primary transition-colors">{post.title}</CardTitle>
           </Link>
           <CardDescription className="mb-4">{post.excerpt}</CardDescription>
-          <Button variant="ghost" className="p-0 h-auto text-primary" asChild>
+          <Button variant="ghost" className="p-4 h-auto text-primary" asChild>
             <Link href={`/blog/${post.slug}`}>
               Read More
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

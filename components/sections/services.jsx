@@ -201,7 +201,7 @@ function ServiceCard({ service }) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="ghost" className="p-0 h-auto group-hover:text-primary transition-colors" asChild>
+        <Button variant="ghost" className="p-3 h-auto group-hover:text-primary transition-colors" asChild>
           <Link href={`/services#${service.category}`}>
             Learn more
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

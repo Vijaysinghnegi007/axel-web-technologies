@@ -30,8 +30,8 @@ export default function Breadcrumb() {
   })
 
   return (
-    <nav className="bg-muted/30 border-b border-border/50" aria-label="Breadcrumb">
-      <div className="container mx-auto px-4 py-8">
+    <nav className="bg-muted/30 border-b" aria-label="Breadcrumb">
+      <div className="container mx-auto px-4 pt-10 pb-6">
         <ol className="flex items-center space-x-2 text-sm">
           <li>
             <Link

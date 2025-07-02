@@ -1,8 +1,6 @@
 "use client"
 
-import { useState } from "react"
-
-import { useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -20,20 +18,27 @@ export default function About() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    const timeline = timelineRef.current
+    const timelineItems = document.querySelectorAll(".timeline-item")
 
-    if (timeline) {
-      gsap.from(".timeline-item", {
-        opacity: 0,
-        y: 50,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: timeline,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-        },
-      })
+    if (timelineItems.length > 0) {
+      gsap.fromTo(
+        timelineItems,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.2,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: timelineRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            invalidateOnRefresh: true,
+          },
+        }
+      )
     }
 
     return () => {
