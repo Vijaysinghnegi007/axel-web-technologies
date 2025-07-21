@@ -50,7 +50,7 @@ export default function Footer() {
 
   const contactInfo = [
     { icon: <Mail className="h-5 w-5" />, text: "info@axelwebtech.com", href: "mailto:info@axelwebtech.com" },
-    { icon: <Phone className="h-5 w-5" />, text: "+1 (555) 123-4567", href: "tel:+15551234567" },
+    { icon: <Phone className="h-5 w-5" />, text: "+1 (123) 123-4567", href: "tel:+11231234567" },
     { icon: <MapPin className="h-5 w-5" />, text: "123 Tech Street, Silicon Valley, CA", href: "#" },
   ]
 
