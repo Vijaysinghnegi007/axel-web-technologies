@@ -279,7 +279,7 @@ export default function Header() {
               >
                 <Link
                   href={item.path}
-                  className={`text-sm font-medium transition-all duration-200 hover:text-primary hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md px-2 py-1 relative group ${
+                  className={`text-sm font-medium transition-all duration-200 hover:text-primary hover:scale-105 rounded-md px-2 py-1 relative group ${
                     isActive(item.path) ? "text-primary font-semibold" : "text-foreground/80"
                   }`}
                   aria-current={isActive(item.path) ? "page" : undefined}
@@ -295,7 +295,7 @@ export default function Header() {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="text-sm font-medium hover:text-primary transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                  className="text-sm font-medium hover:text-primary transition-colors "
                   aria-label="More pages"
                 >
                   More
